@@ -7,6 +7,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectId" id="1Wk8t8vtg4FnTaGBCikqturFO56" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -15,8 +22,109 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.twu.biblioteca" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.BibliotecaTests.shouldPrintAllBooks">
+    <configuration name="BibliotecaApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.twu.biblioteca.BibliotecaApp" />
+      <module name="biblioteca" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.twu.biblioteca.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BibliotecaTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="biblioteca" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.twu.biblioteca.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.twu.biblioteca" />
+      <option name="MAIN_CLASS_NAME" value="com.twu.biblioteca.BibliotecaTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BibliotecaTests.shouldPrintAllBooks" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="biblioteca" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.twu.biblioteca.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.twu.biblioteca" />
+      <option name="MAIN_CLASS_NAME" value="com.twu.biblioteca.BibliotecaTests" />
+      <option name="METHOD_NAME" value="shouldPrintAllBooks" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BibliotecaTests.shouldPrintWelcomeMessage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="biblioteca" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.twu.biblioteca.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.twu.biblioteca" />
+      <option name="MAIN_CLASS_NAME" value="com.twu.biblioteca.BibliotecaTests" />
+      <option name="METHOD_NAME" value="shouldPrintWelcomeMessage" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExampleTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="biblioteca" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.twu.biblioteca.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.twu.biblioteca" />
+      <option name="MAIN_CLASS_NAME" value="com.twu.biblioteca.ExampleTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.BibliotecaTests.shouldPrintAllBooks" />
+        <item itemvalue="Application.BibliotecaApp" />
+        <item itemvalue="JUnit.BibliotecaTests" />
+        <item itemvalue="JUnit.BibliotecaTests.shouldPrintWelcomeMessage" />
+        <item itemvalue="JUnit.ExampleTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -44,9 +152,45 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="742" y="377" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1579684474798">
+      <screen x="0" y="23" width="1680" height="956" />
+    </state>
+    <state x="742" y="377" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.23.1680.956@0.23.1680.956" timestamp="1579684474798" />
+    <state width="1358" height="264" key="GridCell.Tab.0.bottom" timestamp="1579813711535">
+      <screen x="0" y="23" width="1680" height="956" />
+    </state>
+    <state width="1358" height="264" key="GridCell.Tab.0.bottom/0.23.1680.956@0.23.1680.956" timestamp="1579813711535" />
+    <state width="1358" height="243" key="GridCell.Tab.0.bottom/0.23.1680.958@0.23.1680.958" timestamp="1579788279844" />
+    <state width="1358" height="264" key="GridCell.Tab.0.center" timestamp="1579813711534">
+      <screen x="0" y="23" width="1680" height="956" />
+    </state>
+    <state width="1358" height="264" key="GridCell.Tab.0.center/0.23.1680.956@0.23.1680.956" timestamp="1579813711534" />
+    <state width="1358" height="243" key="GridCell.Tab.0.center/0.23.1680.958@0.23.1680.958" timestamp="1579788279843" />
+    <state width="1358" height="264" key="GridCell.Tab.0.left" timestamp="1579813711533">
+      <screen x="0" y="23" width="1680" height="956" />
+    </state>
+    <state width="1358" height="264" key="GridCell.Tab.0.left/0.23.1680.956@0.23.1680.956" timestamp="1579813711533" />
+    <state width="1358" height="243" key="GridCell.Tab.0.left/0.23.1680.958@0.23.1680.958" timestamp="1579788279843" />
+    <state width="1358" height="264" key="GridCell.Tab.0.right" timestamp="1579813711534">
+      <screen x="0" y="23" width="1680" height="956" />
+    </state>
+    <state width="1358" height="264" key="GridCell.Tab.0.right/0.23.1680.956@0.23.1680.956" timestamp="1579813711534" />
+    <state width="1358" height="243" key="GridCell.Tab.0.right/0.23.1680.958@0.23.1680.958" timestamp="1579788279844" />
+    <state x="252" y="62" key="SettingsEditor" timestamp="1579774457632">
+      <screen x="0" y="23" width="1680" height="956" />
+    </state>
+    <state x="252" y="62" key="SettingsEditor/0.23.1680.956@0.23.1680.956" timestamp="1579774457632" />
     <state x="447" y="313" key="com.intellij.ide.util.TipDialog" timestamp="1579682446387">
       <screen x="0" y="23" width="1680" height="956" />
     </state>
     <state x="447" y="313" key="com.intellij.ide.util.TipDialog/0.23.1680.956@0.23.1680.956" timestamp="1579682446387" />
+    <state x="476" y="381" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1579774199110">
+      <screen x="0" y="23" width="1680" height="956" />
+    </state>
+    <state x="476" y="381" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.23.1680.956@0.23.1680.956" timestamp="1579774199110" />
+    <state x="570" y="97" key="refactoring.ChangeSignatureDialog" timestamp="1579791015652">
+      <screen x="0" y="23" width="1680" height="956" />
+    </state>
+    <state x="570" y="97" key="refactoring.ChangeSignatureDialog/0.23.1680.956@0.23.1680.956" timestamp="1579791015652" />
   </component>
 </project>
