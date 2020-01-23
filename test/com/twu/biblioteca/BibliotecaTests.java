@@ -8,7 +8,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.PrintStream;
-import java.util.ArrayList;M
+import java.util.ArrayList;
 
 public class BibliotecaTests {
 
