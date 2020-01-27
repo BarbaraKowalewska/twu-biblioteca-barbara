@@ -44,8 +44,9 @@ public class Biblioteca {
         Iterator<Map.Entry<Book, Boolean>> allBooksIterator = allBooks.entrySet().iterator();
         while (allBooksIterator.hasNext()) {
             Map.Entry<Book, Boolean> entry = allBooksIterator.next();
-            booksTitles += entry.getKey().getTitle() + " - " + entry.getKey().getAuthor()+ ", " + entry.getKey().getPublicationDate() +"\n";
-
+            if (entry.getValue().equals(true)){
+                booksTitles += entry.getKey().getTitle() + " - " + entry.getKey().getAuthor()+ ", " + entry.getKey().getPublicationDate() +"\n";
+            }
                     }
         printStream.println(booksTitles);
     }
