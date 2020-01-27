@@ -41,7 +41,7 @@ public class BibliotecaTests {
 
 
        biblioteca.displayAllBooks();
-       verify(printStream).println("Harry Potter\nJava Master\nBarcelona Guide\n");
+       verify(printStream).println("Harry Potter - Jim, 1999\nJava Master - Kate, 2010\nBarcelona Guide - Jose, 2016\n");
     }
 
 

@@ -35,7 +35,7 @@ public class Biblioteca {
 
         String booksTitles = "";
         for (int i = 0; i < getAllBooks().size(); i ++) {
-            booksTitles += getAllBooks().get(i).getTitle() + "\n";;
+            booksTitles += getAllBooks().get(i).getTitle() +" - " + getAllBooks().get(i).getAuthor() + ", " + getAllBooks().get(i).getPublicationDate() +"\n";;
         }
         printStream.println(booksTitles);
     }
