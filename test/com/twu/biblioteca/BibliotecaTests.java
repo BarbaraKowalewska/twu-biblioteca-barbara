@@ -1,6 +1,8 @@
 package com.twu.biblioteca;
 
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 
@@ -11,14 +13,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 public class BibliotecaTests {
 
-
+    private PrintStream printStream;
+    private Biblioteca biblioteca;
+    private BufferedReader bufferedReader;
 
     @Test
     public void shouldPrintWelcomeMessage() {
@@ -46,6 +47,23 @@ public class BibliotecaTests {
        verify(printStream).println("Harry Potter - Jim, 1999\nJava Master - Kate, 2010\nBarcelona Guide - Jose, 2016\n");
     }
 
+    @Test
+    public void shouldCheckoutBook()  throws IOException{
+
+        Map<Book, Boolean> books = new LinkedHashMap<Book, Boolean>();
+        Book newBook = new Book("Harry Potter", "Jim", "1999");
+        books.put(newBook, true);
+        Biblioteca biblioteca = new Biblioteca(books, printStream, bufferedReader);
+        BufferedReader bufferedReader = mock(BufferedReader.class);
+        when(bufferedReader.readLine()).thenReturn("Harry Potter");
+        biblioteca.checkoutBook();
+
+
+            assertEquals(false, books.get(newBook));
+
+
+
+    }
 
 
 }

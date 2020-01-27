@@ -48,7 +48,9 @@ public class Biblioteca {
         printStream.println(booksTitles);
     }
 
+    public void checkoutBook() {
     }
+}
 
 
 
