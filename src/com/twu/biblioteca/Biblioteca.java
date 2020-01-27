@@ -1,19 +1,22 @@
 package com.twu.biblioteca;
 
-import com.sun.deploy.uitoolkit.ui.ConsoleWindow;
 
+import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class Biblioteca {
 
     private PrintStream printStream;
+    private BufferedReader bufferedReader;
     private ArrayList allBooks;
 
-    public Biblioteca(ArrayList<Book> books, PrintStream printStream) {
+
+    public Biblioteca(ArrayList<Book> books, PrintStream printStream, BufferedReader bufferedReader) {
         this.printStream = printStream;
         this.allBooks = books;
+        this.bufferedReader = bufferedReader;
 
     }
 
@@ -32,12 +35,12 @@ public class Biblioteca {
 
         String booksTitles = "";
         for (int i = 0; i < getAllBooks().size(); i ++) {
-//            System.out.println(getAllBooks().get(i).getTitle());
             booksTitles += getAllBooks().get(i).getTitle() + "\n";;
         }
         printStream.println(booksTitles);
-
     }
 
-
 }
+
+
+

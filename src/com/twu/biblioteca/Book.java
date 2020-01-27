@@ -1,17 +1,16 @@
 package com.twu.biblioteca;
 
-import java.util.ArrayList;
 
 public class Book {
 
     private String title;
+    private String author;
+    private String publicationDate;
 
-
-    //public static ArrayList<Book> allBooks;
-//    ArrayList<Book> allBooks = new ArrayList<Book>();
-
-    public Book(String title){
+    public Book(String title, String author, String publicationDate){
         this.title = title;
+        this.author = author;
+        this.publicationDate = publicationDate;
 
     }
 
