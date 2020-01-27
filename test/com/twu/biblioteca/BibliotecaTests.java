@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class BibliotecaTests {
 
@@ -20,7 +23,7 @@ public class BibliotecaTests {
     @Test
     public void shouldPrintWelcomeMessage() {
         PrintStream printStream = mock(PrintStream.class);
-        ArrayList<Book> books = new ArrayList<Book>();
+        Map<Book, Boolean> books = new LinkedHashMap<Book, Boolean>();
         BufferedReader bufferedReader;
         bufferedReader = mock(BufferedReader.class);
         Biblioteca biblioteca = new Biblioteca(books,printStream,bufferedReader);
@@ -32,13 +35,12 @@ public class BibliotecaTests {
     @Test
     public void shouldPrintAllBooks() {
         PrintStream printStream = mock(PrintStream.class);
-        ArrayList<Book> books = new ArrayList<Book>();
-        books.add(new Book("Harry Potter", "Jim", "1999"));
-        books.add(new Book ("Java Master", "Kate", "2010"));
-        books.add(new Book ("Barcelona Guide", "Jose", "2016"));
+        Map<Book, Boolean> books = new LinkedHashMap<Book, Boolean>();
+        books.put(new Book("Harry Potter", "Jim", "1999"), true);
+        books.put(new Book ("Java Master", "Kate", "2010"),true);
+        books.put(new Book ("Barcelona Guide", "Jose", "2016"),true);
         BufferedReader bufferedReader = mock(BufferedReader.class);
         Biblioteca biblioteca = new Biblioteca(books,printStream,bufferedReader);
-
 
        biblioteca.displayAllBooks();
        verify(printStream).println("Harry Potter - Jim, 1999\nJava Master - Kate, 2010\nBarcelona Guide - Jose, 2016\n");

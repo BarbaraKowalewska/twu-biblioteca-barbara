@@ -1,19 +1,23 @@
 package com.twu.biblioteca;
 
 
+import com.sun.codemodel.internal.JForEach;
+
 import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 
 
 public class Biblioteca {
 
     private PrintStream printStream;
     private BufferedReader bufferedReader;
-    private ArrayList allBooks;
+    private Map<Book, Boolean> allBooks;
 
 
-    public Biblioteca(ArrayList<Book> books, PrintStream printStream, BufferedReader bufferedReader) {
+    public Biblioteca(Map<Book,Boolean> books, PrintStream printStream, BufferedReader bufferedReader) {
         this.printStream = printStream;
         this.allBooks = books;
         this.bufferedReader = bufferedReader;
@@ -26,7 +30,7 @@ public class Biblioteca {
 
     }
 
-    public ArrayList<Book> getAllBooks() {
+    public Map <Book, Boolean> getAllBooks() {
         return allBooks;
     }
 
@@ -34,13 +38,18 @@ public class Biblioteca {
     public void displayAllBooks() {
 
         String booksTitles = "";
-        for (int i = 0; i < getAllBooks().size(); i ++) {
-            booksTitles += getAllBooks().get(i).getTitle() +" - " + getAllBooks().get(i).getAuthor() + ", " + getAllBooks().get(i).getPublicationDate() +"\n";;
-        }
+
+        Iterator<Map.Entry<Book, Boolean>> allBooksIterator = allBooks.entrySet().iterator();
+        while (allBooksIterator.hasNext()) {
+            Map.Entry<Book, Boolean> entry = allBooksIterator.next();
+            booksTitles += entry.getKey().getTitle() + " - " + entry.getKey().getAuthor()+ ", " + entry.getKey().getPublicationDate() +"\n";
+
+                    }
         printStream.println(booksTitles);
     }
 
-}
+    }
+
 
 
 
