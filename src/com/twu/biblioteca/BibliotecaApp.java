@@ -23,9 +23,9 @@ public class BibliotecaApp {
 
     private static Map<Book, Boolean> books() {
         Map <Book, Boolean> books = new LinkedHashMap<Book, Boolean>();
-        books.put(new Book("Head First Java", "Jim", "1999"), true);
-        books.put(new Book ("Test Driven Development by Example", "Kate", "2010"),true);
-        books.put(new Book ("The Agile Samurai", "Jose", "2016"),true);
+        books.put(new Book("Harry Potter", "Jim", "1999"), true);
+        books.put(new Book ("Hello", "Kate", "2010"),true);
+        books.put(new Book ("Agile", "Jose", "2016"),true);
         return books;
     }
 }

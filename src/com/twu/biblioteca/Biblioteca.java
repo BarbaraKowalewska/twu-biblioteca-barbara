@@ -4,10 +4,12 @@ package com.twu.biblioteca;
 import com.sun.codemodel.internal.JForEach;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Scanner;
 
 
 public class Biblioteca {
@@ -49,7 +51,23 @@ public class Biblioteca {
     }
 
     public void checkoutBook() {
+
+        System.out.println("Which book do you want to checkout?");
+        Scanner in = new Scanner(System.in);
+        String bookToCheckout = in.nextLine();
+
+        Iterator<Map.Entry<Book, Boolean>> allBooksIterator = getAllBooks().entrySet().iterator();
+        while (allBooksIterator.hasNext()) {
+            Map.Entry<Book, Boolean> entry = allBooksIterator.next();
+            if (entry.getKey().getTitle().equals(bookToCheckout) && entry.getValue().equals(true)) {
+                System.out.println("Thank you! Enjoy the book");
+                allBooks.put(entry.getKey(),false);
+
+            }
+
+        }
     }
+
 }
 
 

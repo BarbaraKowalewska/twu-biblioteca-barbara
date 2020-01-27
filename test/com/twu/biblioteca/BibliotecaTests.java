@@ -9,10 +9,7 @@ import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
+import java.io.*;
 import java.util.*;
 
 public class BibliotecaTests {
@@ -54,12 +51,14 @@ public class BibliotecaTests {
         Book newBook = new Book("Harry Potter", "Jim", "1999");
         books.put(newBook, true);
         Biblioteca biblioteca = new Biblioteca(books, printStream, bufferedReader);
-        BufferedReader bufferedReader = mock(BufferedReader.class);
-        when(bufferedReader.readLine()).thenReturn("Harry Potter");
+
+        String input = "Harry Potter";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
         biblioteca.checkoutBook();
 
-
-            assertEquals(false, books.get(newBook));
+        assertEquals(false, books.get(newBook));
 
 
 

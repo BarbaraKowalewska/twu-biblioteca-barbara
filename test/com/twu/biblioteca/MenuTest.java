@@ -40,32 +40,5 @@ public class MenuTest {
 
     }
 
-//    @Test
-//    public void shouldCheckoutBookWhenChosen() throws IOException {
-//        // user chooses a book
-//        // book is no longer available
-//        Biblioteca biblioteca = mock(Biblioteca.class);
-//        BufferedReader bufferedReader = mock(BufferedReader.class);
-//        when(bufferedReader.readLine()).thenReturn("Harry Potter");
-//        biblioteca.checkoutBook();
-//
-//
-//        Iterator<Map.Entry<Book, Boolean>> allBooksIterator = biblioteca.getAllBooks().entrySet().iterator();
-//        while (allBooksIterator.hasNext()) {
-//            Map.Entry<Book, Boolean> entry = allBooksIterator.next();
-//            if (entry.getKey().getTitle() == "Harry Potter" && entry.getValue() == false) {
-//
-//        }
-//
-//        }
-
-
-
-
-
-
-
-
-
 
     }
