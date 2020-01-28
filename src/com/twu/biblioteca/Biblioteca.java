@@ -58,14 +58,17 @@ public class Biblioteca {
         String bookToCheckout = in.nextLine();
 
         Iterator<Map.Entry<Book, Boolean>> allBooksIterator = getAllBooks().entrySet().iterator();
+        Boolean bookNotAvailable = true;
         while (allBooksIterator.hasNext()) {
             Map.Entry<Book, Boolean> entry = allBooksIterator.next();
             if (entry.getKey().getTitle().equals(bookToCheckout) && entry.getValue().equals(true)) {
                 System.out.println("Thank you! Enjoy the book");
                 allBooks.put(entry.getKey(),false);
-
+                bookNotAvailable = false;
             }
-
+        }
+        if (bookNotAvailable.equals(true)){
+            printStream.println("Sorry this book is not available");
         }
     }
 

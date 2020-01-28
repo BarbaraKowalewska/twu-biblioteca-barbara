@@ -59,9 +59,24 @@ public class BibliotecaTests {
 
         assertEquals(false, books.get(newBook));
 
+    }
+
+    @Test
+    public void shouldShowErrorMessageWhenBookCannotBeCheckout() {
+        PrintStream printStream = mock(PrintStream.class);
+        Map<Book, Boolean> books = new LinkedHashMap<Book, Boolean>();
+        Book newBook = new Book("Harry Potter", "Jim", "1999");
+        books.put(newBook, true);
+        Biblioteca biblioteca = new Biblioteca(books, printStream, bufferedReader);
+
+        String input = "Clean Code";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        biblioteca.checkoutBook();
+        verify(printStream).println("Sorry this book is not available");
 
 
     }
-
 
 }

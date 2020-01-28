@@ -30,7 +30,7 @@ public class Menu {
 
     public void display() {
         System.out.println("Press number for the option you want");
-        System.out.println ( "1) List of books\n2) Quit" );
+        System.out.println ( "1) List of books\n2) Quit\n3) Checkout the book" );
         String userChoice = readLine();
         int choice = Integer.parseInt(userChoice);
             switch (choice) {
