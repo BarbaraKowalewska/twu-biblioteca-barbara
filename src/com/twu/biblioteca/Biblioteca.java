@@ -73,6 +73,25 @@ public class Biblioteca {
     }
 
     public void returnBook() {
+        System.out.println("Which book do you want to return?");
+        Scanner in = new Scanner(System.in);
+        String bookToReturn = in.nextLine();
+
+        Boolean bookCannotBeReturned = true;
+        Iterator<Map.Entry<Book, Boolean>> allBooksIterator = getAllBooks().entrySet().iterator();
+        while (allBooksIterator.hasNext()) {
+            Map.Entry<Book, Boolean> entry = allBooksIterator.next();
+            if (entry.getKey().getTitle().equals(bookToReturn) && entry.getValue().equals(false)) {
+                System.out.println("Thank you for returning the book!");
+                allBooks.put(entry.getKey(),true);
+                bookCannotBeReturned = false;
+
+            }
+        }
+        if (bookCannotBeReturned.equals(true)){
+            printStream.println("This is not a valid book to return");
+        }
+
     }
 }
 

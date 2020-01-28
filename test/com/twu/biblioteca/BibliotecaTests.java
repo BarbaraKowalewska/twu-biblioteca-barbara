@@ -75,7 +75,40 @@ public class BibliotecaTests {
 
         biblioteca.checkoutBook();
         verify(printStream).println("Sorry this book is not available");
+    }
 
+    @Test
+    public void shouldReturnBook() {
+        PrintStream printStream = mock(PrintStream.class);
+        Map<Book, Boolean> books = new LinkedHashMap<Book, Boolean>();
+        Book newBook = new Book ("Java Master", "Kate", "2010");
+        books.put(new Book("Harry Potter", "Jim", "1999"), true);
+        books.put(newBook, false);
+        Biblioteca biblioteca = new Biblioteca(books, printStream, bufferedReader);
+
+        String input = "Java Master";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        biblioteca.returnBook();
+        assertEquals(true, books.get(newBook));
+
+    }
+
+    @Test
+    public void shouldShowErrorMessageWhenBookCannotBeReturned() {
+        PrintStream printStream = mock(PrintStream.class);
+        Map<Book, Boolean> books = new LinkedHashMap<Book, Boolean>();
+        Book newBook = new Book("Harry Potter", "Jim", "1999");
+        books.put(newBook, false);
+        Biblioteca biblioteca = new Biblioteca(books, printStream, bufferedReader);
+
+        String input = "Agile";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        biblioteca.returnBook();
+        verify(printStream).println("This is not a valid book to return");
 
     }
 

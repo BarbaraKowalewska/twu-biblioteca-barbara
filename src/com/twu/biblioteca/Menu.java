@@ -29,10 +29,11 @@ public class Menu {
     }
 
     public void display() {
-        System.out.println("Press number for the option you want");
-        System.out.println ( "1) List of books\n2) Quit\n3) Checkout the book\n4) Return the book" );
-        String userChoice = readLine();
-        int choice = Integer.parseInt(userChoice);
+        try {
+            System.out.println("Press number for the option you want");
+            System.out.println ( "1) List of books\n2) Quit\n3) Checkout the book\n4) Return the book" );
+            String userChoice = readLine();
+            int choice = Integer.parseInt(userChoice);
             switch (choice) {
                 case 1:
                     this.biblioteca.displayAllBooks();;
@@ -52,7 +53,12 @@ public class Menu {
                     printStream.println(errorMessage);
                     break;
 
+        } }catch (Exception e) {
+                System.out.println("Please select a valid option");
+            }
+
+
         }
 
     }
-}
+

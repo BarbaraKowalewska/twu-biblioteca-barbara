@@ -37,7 +37,6 @@ public class MenuTest {
         when(bufferedReader.readLine()).thenReturn("6");
         menu.display();
         verify(printStream).println("Please select a valid option!");
-
     }
 
     @Test
