@@ -44,6 +44,9 @@ public class Menu {
                 case 3:
                     this.biblioteca.checkoutBook();
                     break;
+                case 4:
+                    this.biblioteca.returnBook();
+                    break;
                 default:
                     String errorMessage = "Please select a valid option!";
                     printStream.println(errorMessage);

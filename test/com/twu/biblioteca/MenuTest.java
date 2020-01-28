@@ -51,8 +51,20 @@ public class MenuTest {
         verify(biblioteca, times(1)).checkoutBook();
     }
 
+    @Test
+    public void shouldEnableBookReturnWhenUserChooses4() throws IOException {
 
-
-
+        BufferedReader bufferedReader = mock(BufferedReader.class);
+        Biblioteca biblioteca = mock(Biblioteca.class);
+        printStream = mock(PrintStream.class);
+        Menu menu = new Menu(bufferedReader, biblioteca, printStream);
+        when(bufferedReader.readLine()).thenReturn("4");
+        menu.display();
+        verify(biblioteca, times(1)).returnBook();
+    }
 
     }
+
+
+
+

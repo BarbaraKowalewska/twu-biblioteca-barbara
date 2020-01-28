@@ -72,6 +72,8 @@ public class Biblioteca {
         }
     }
 
+    public void returnBook() {
+    }
 }
 
 
