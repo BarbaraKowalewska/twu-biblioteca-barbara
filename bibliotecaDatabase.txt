@@ -1,0 +1,61 @@
+1.Who checked out the book 'The Hobbit’?
+
+select checkout_item.member_id, member.name from checkout_item join book on book.id=checkout_item.book_id join member on member.id = checkout_item.member_id  where book.title ="The Hobbit";
+
+Answer: 1           Anand Beck
+
+2. How many people have not checked out anything?
+
+SELECT(SELECT COUNT (DISTINCT member.id) from member)-(SELECT COUNT(DISTINCT member_id) from checkout_item);
+
+Answer: 37
+
+3. What books and movies aren't checked out?
+
+Select book.title from book
+left join checkout_item 
+on book.id = checkout_item.book_id
+where checkout_item.book_id is null
+UNION
+select movie.title from movie
+left join checkout_item
+on movie.id = checkout_item.movie_id
+where checkout_item.movie_id is null;
+
+Answer: 
+1984
+Catcher in the Rye
+Crouching Tiger, Hidden Dragon
+Domain Driven Design
+Fellowship of the Ring
+Lawrence of Arabia
+Office Space
+Thin Red Line
+To Kill a Mockingbird
+Tom Sawyer
+
+
+
+4. Add the book 'The Pragmatic Programmer', and add yourself as a member. Check out 'The Pragmatic Programmer'. Use your query from question 1 to verify that you have checked it out. Also, provide the SQL used to update the database.
+
+
+insert into book
+   ...> values(11, 'The Pragmatic Programmer');
+
+
+insert into member
+   ...> values(43,'Barbara Kowalewska');
+
+insert into checkout_item
+   ...> values(43,11,null);
+
+5. Who has checked out more than 1 item? 
+
+Select member.name, COUNT(checkout_item.member_id) as rented_items from checkout_item
+   ...> left join member on member.id = checkout_item.member_id
+   ...> group by member.name
+   ...> having count(checkout_item.member_id) >1;
+
+Anand Beck|3
+Frank Smith|3
+
