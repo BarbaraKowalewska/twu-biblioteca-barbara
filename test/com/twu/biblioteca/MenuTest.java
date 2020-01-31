@@ -71,6 +71,18 @@ public class MenuTest {
         verify(biblioteca, times(1)).returnBook();
     }
 
+    @Test
+    public void shouldDisplayAllMoviesWhenUserChooses5() throws IOException {
+        Biblioteca biblioteca = mock(Biblioteca.class);
+        Menu menu = new Menu(bufferedReader, biblioteca, printStream);
+        when(bufferedReader.readLine()).thenReturn("5");
+
+        menu.display();
+
+        verify(biblioteca, times(1)).displayAllMovies();
+    }
+
+
     }
 
 

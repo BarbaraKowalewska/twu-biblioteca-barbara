@@ -9,7 +9,7 @@ public class BibliotecaApp {
 
     public static void main(String[] args) {
 
-        Biblioteca biblioteca = new Biblioteca(books(),System.out, new BufferedReader(new InputStreamReader(System.in)));
+        Biblioteca biblioteca = new Biblioteca(books(),System.out, new BufferedReader(new InputStreamReader(System.in)),movies());
         Menu menu = new Menu(new BufferedReader(new InputStreamReader(System.in)),biblioteca,System.out);
         biblioteca.displayWelcomeMessage();
         while(true) {
@@ -25,4 +25,13 @@ public class BibliotecaApp {
         books.put(new Book ("Agile", "Jose", "2016"),true);
         return books;
     }
+
+    private static Map<Movie, Boolean> movies() {
+        Map<Movie,Boolean> movies = new LinkedHashMap<Movie, Boolean>();
+        movies.put(new Movie("Sabrina","John","1995",8),true);
+        movies.put(new Movie("Shrek","Alla","2015",10),true);
+        movies.put(new Movie("Magic Castle","Tom","1875",8),true);
+        return movies;
+    }
+
 }

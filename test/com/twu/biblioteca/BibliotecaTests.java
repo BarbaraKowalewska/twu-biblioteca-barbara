@@ -18,13 +18,16 @@ public class BibliotecaTests {
     private Biblioteca biblioteca;
     private BufferedReader bufferedReader;
     private Map<Book, Boolean> books;
+    private Map<Movie,Boolean> movies;
 
     @Before
     public void setUp() throws Exception {
         printStream = mock(PrintStream.class);
         bufferedReader = mock(BufferedReader.class);
         books = new LinkedHashMap<Book, Boolean>();
-        biblioteca = new Biblioteca(books,printStream,bufferedReader);
+        movies = new LinkedHashMap<Movie,Boolean>();
+        biblioteca = new Biblioteca(books,printStream,bufferedReader,movies);
+
 
     }
 
@@ -102,4 +105,18 @@ public class BibliotecaTests {
         verify(printStream).println("This is not a valid book to return");
 
     }
+
+    @Test
+    public void shouldDisplayAllAvailableMovies(){
+
+        movies.put(new Movie("Sabrina","John","1990", 8), true);
+        movies.put(new Movie("Kot","John","1995", 10), true);
+
+        biblioteca.displayAllMovies();
+
+        verify(printStream).println("Sabrina - John, 1990 rating: 8\nKot - John, 1995 rating: 10\n");
+
+    }
+
+
 }

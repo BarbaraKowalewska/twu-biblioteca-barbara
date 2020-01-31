@@ -3,9 +3,7 @@ package com.twu.biblioteca;
 
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
@@ -16,12 +14,14 @@ public class Biblioteca {
     private PrintStream printStream;
     private BufferedReader bufferedReader;
     private Map<Book, Boolean> allBooks;
+    private Map<Movie,Boolean> allMovies;
 
 
-    public Biblioteca(Map<Book,Boolean> books, PrintStream printStream, BufferedReader bufferedReader) {
+    public Biblioteca(Map<Book,Boolean> books, PrintStream printStream, BufferedReader bufferedReader, Map<Movie,Boolean> movies) {
         this.printStream = printStream;
         this.allBooks = books;
         this.bufferedReader = bufferedReader;
+        this.allMovies = movies;
 
     }
 
@@ -35,11 +35,14 @@ public class Biblioteca {
         return allBooks;
     }
 
+    public Map<Movie,Boolean> getAllMovies() {
+        return allMovies;
+    }
+
 
     public void displayAllBooks() {
 
         String booksTitles = "";
-
         Iterator<Map.Entry<Book, Boolean>> allBooksIterator = allBooks.entrySet().iterator();
         while (allBooksIterator.hasNext()) {
             Map.Entry<Book, Boolean> entry = allBooksIterator.next();
@@ -49,6 +52,21 @@ public class Biblioteca {
                     }
         printStream.println(booksTitles);
     }
+
+    public void displayAllMovies() {
+        String moviesTitles = "";
+        Iterator<Map.Entry<Movie, Boolean>> allMoviesIterator = allMovies.entrySet().iterator();
+        while (allMoviesIterator.hasNext()) {
+            Map.Entry<Movie,Boolean> entry = allMoviesIterator.next();
+            if (entry.getValue().equals(true)){
+                moviesTitles += entry.getKey().getTitle() + " - " + entry.getKey().getDirector()+ ", " + entry.getKey().getYear() + " rating: " + entry.getKey().getRating() +"\n";
+            }
+        }
+
+        printStream.println(moviesTitles);
+    }
+
+
 
     public void checkoutBook() {
 
@@ -84,7 +102,6 @@ public class Biblioteca {
                 System.out.println("Thank you for returning the book!");
                 allBooks.put(entry.getKey(),true);
                 bookCannotBeReturned = false;
-
             }
         }
         if (bookCannotBeReturned.equals(true)){
@@ -93,7 +110,3 @@ public class Biblioteca {
 
     }
 }
-
-
-
-
