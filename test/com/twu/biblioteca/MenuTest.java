@@ -23,8 +23,6 @@ public class MenuTest {
         printStream = mock(PrintStream.class);
         bufferedReader = mock(BufferedReader.class);
         books = new LinkedHashMap<Book, Boolean>();
-
-
     }
 
     @Test
@@ -42,7 +40,7 @@ public class MenuTest {
     public void shouldDisplayErrorMessageWhenUserChoosesInvalidOption() throws  IOException {
         Biblioteca biblioteca = mock(Biblioteca.class);
         Menu menu = new Menu(bufferedReader, biblioteca, printStream);
-        when(bufferedReader.readLine()).thenReturn("6");
+        when(bufferedReader.readLine()).thenReturn("9");
 
         menu.display();
 
