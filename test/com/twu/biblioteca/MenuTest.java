@@ -82,6 +82,16 @@ public class MenuTest {
         verify(biblioteca, times(1)).displayAllMovies();
     }
 
+    @Test
+    public void shouldEnableBookCheckoutWhenUserChooses6() throws IOException {
+        Biblioteca biblioteca = mock(Biblioteca.class);
+        Menu menu = new Menu(bufferedReader, biblioteca, printStream);
+        when(bufferedReader.readLine()).thenReturn("6");
+
+        menu.display();
+
+        verify(biblioteca, times(1)).checkoutMovie();
+    }
 
     }
 

@@ -31,7 +31,7 @@ public class Menu {
     public void display() {
         try {
             System.out.println("Press number for the option you want");
-            System.out.println ( "1) List of books\n2) Quit\n3) Checkout the book\n4) Return the book\n5) Display Movies" );
+            System.out.println ( "1) List of books\n2) Quit\n3) Checkout the book\n4) Return the book\n5) Display Movies\n6) Checkout Movie" );
             String userChoice = readLine();
             int choice = Integer.parseInt(userChoice);
             switch (choice) {
@@ -50,6 +50,10 @@ public class Menu {
                     break;
                 case 5:
                     this.biblioteca.displayAllMovies();
+                    break;
+                case 6:
+                    this.biblioteca.checkoutMovie();
+                    break;
                 default:
                     String errorMessage = "Please select a valid option!";
                     printStream.println(errorMessage);
