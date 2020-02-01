@@ -27,10 +27,7 @@ public class BibliotecaTests {
         books = new LinkedHashMap<Book, Boolean>();
         movies = new LinkedHashMap<Movie,Boolean>();
         biblioteca = new Biblioteca(books,printStream,bufferedReader,movies);
-
-
     }
-
 
     @Test
     public void shouldPrintWelcomeMessage() {
@@ -115,6 +112,21 @@ public class BibliotecaTests {
         biblioteca.displayAllMovies();
 
         verify(printStream).println("Sabrina - John, 1990 rating: 8\nKot - John, 1995 rating: 10\n");
+
+    }
+
+    @Test
+    public void shouldCheckoutMovie()  throws IOException{
+        Movie newmovie = new Movie("Sabrina","John","1990", 8);
+
+        movies.put(newmovie, true);
+
+        String input = "Sabrina";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        biblioteca.checkoutMovie();
+
+        assertEquals(false, movies.get(newmovie));
 
     }
 

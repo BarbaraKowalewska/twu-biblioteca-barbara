@@ -109,4 +109,27 @@ public class Biblioteca {
         }
 
     }
-}
+
+    public void checkoutMovie() {
+        System.out.println("Which movie do you want to checkout?");
+        Scanner in = new Scanner(System.in);
+        String movieToCheckout = in.nextLine();
+
+        Iterator<Map.Entry<Movie, Boolean>> allMoviesIterator = allMovies.entrySet().iterator();
+        Boolean movieNotAvailable = true;
+        while (allMoviesIterator.hasNext()) {
+            Map.Entry<Movie,Boolean> entry = allMoviesIterator.next();
+            if (entry.getKey().getTitle().equals(movieToCheckout) && entry.getValue().equals(true)) {
+                System.out.println("Thank you! Enjoy the movie");
+                allMovies.put(entry.getKey(),false);
+                movieNotAvailable = false;
+
+            }
+        }
+        if (movieNotAvailable.equals(true)){
+            printStream.println("Sorry this movie is not available");
+        }
+
+
+    }}
+
