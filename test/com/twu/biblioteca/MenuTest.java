@@ -16,6 +16,7 @@ public class MenuTest {
     private BufferedReader bufferedReader;
     private PrintStream printStream;
     private Map<Book, Boolean> books;
+    private Biblioteca biblioteca;
 
 
     @Before
@@ -23,11 +24,11 @@ public class MenuTest {
         printStream = mock(PrintStream.class);
         bufferedReader = mock(BufferedReader.class);
         books = new LinkedHashMap<Book, Boolean>();
+        biblioteca = mock(Biblioteca.class);
     }
 
     @Test
     public void shouldDisplayAllBooksWhenUserChooses1() throws IOException {
-        Biblioteca biblioteca = mock(Biblioteca.class);
         Menu menu = new Menu(bufferedReader, biblioteca, printStream);
         when(bufferedReader.readLine()).thenReturn("1");
 
@@ -38,7 +39,6 @@ public class MenuTest {
 
     @Test
     public void shouldDisplayErrorMessageWhenUserChoosesInvalidOption() throws  IOException {
-        Biblioteca biblioteca = mock(Biblioteca.class);
         Menu menu = new Menu(bufferedReader, biblioteca, printStream);
         when(bufferedReader.readLine()).thenReturn("9");
 
@@ -49,7 +49,6 @@ public class MenuTest {
 
     @Test
     public void shouldEnableBookCheckoutWhenUserChooses3() throws IOException {
-        Biblioteca biblioteca = mock(Biblioteca.class);
         Menu menu = new Menu(bufferedReader, biblioteca, printStream);
         when(bufferedReader.readLine()).thenReturn("3");
 
@@ -60,7 +59,6 @@ public class MenuTest {
 
     @Test
     public void shouldEnableBookReturnWhenUserChooses4() throws IOException {
-        Biblioteca biblioteca = mock(Biblioteca.class);
         Menu menu = new Menu(bufferedReader, biblioteca, printStream);
         when(bufferedReader.readLine()).thenReturn("4");
 
@@ -71,7 +69,6 @@ public class MenuTest {
 
     @Test
     public void shouldDisplayAllMoviesWhenUserChooses5() throws IOException {
-        Biblioteca biblioteca = mock(Biblioteca.class);
         Menu menu = new Menu(bufferedReader, biblioteca, printStream);
         when(bufferedReader.readLine()).thenReturn("5");
 
@@ -82,7 +79,6 @@ public class MenuTest {
 
     @Test
     public void shouldEnableBookCheckoutWhenUserChooses6() throws IOException {
-        Biblioteca biblioteca = mock(Biblioteca.class);
         Menu menu = new Menu(bufferedReader, biblioteca, printStream);
         when(bufferedReader.readLine()).thenReturn("6");
 
