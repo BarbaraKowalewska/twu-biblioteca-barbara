@@ -30,8 +30,8 @@ public class Menu {
 
     public void display() {
         try {
-            System.out.println("Press number for the option you want");
-            System.out.println ( "1) List of books\n2) Quit\n3) Checkout the book\n4) Return the book\n5) Display Movies\n6) Checkout Movie" );
+            this.printStream.println("Press number for the option you want");
+            this.printStream.println ( "1) List of books\n2) Quit\n3) Checkout the book\n4) Return the book\n5) Display Movies\n6) Checkout Movie" );
             String userChoice = readLine();
             int choice = Integer.parseInt(userChoice);
             switch (choice) {
@@ -39,7 +39,7 @@ public class Menu {
                     this.biblioteca.displayAllBooks();;
                     break;
                 case 2:
-                    System.out.println("Byeee");
+                    this.printStream.println("Byeee");
                     System.exit(0);
                     break;
                 case 3:
@@ -56,11 +56,11 @@ public class Menu {
                     break;
                 default:
                     String errorMessage = "Please select a valid option!";
-                    printStream.println(errorMessage);
+                    this.printStream.println(errorMessage);
                     break;
 
         } }catch (Exception e) {
-                System.out.println("Please select a valid option");
+                this.printStream.println("Please select a valid option");
             }
 
 
