@@ -17,6 +17,7 @@ public class MenuTest {
     private PrintStream printStream;
     private Map<Book, Boolean> books;
     private Biblioteca biblioteca;
+    private Menu menu;
 
 
     @Before
@@ -25,11 +26,11 @@ public class MenuTest {
         bufferedReader = mock(BufferedReader.class);
         books = new LinkedHashMap<Book, Boolean>();
         biblioteca = mock(Biblioteca.class);
+        menu = new Menu(bufferedReader, biblioteca, printStream);
     }
 
     @Test
     public void shouldDisplayAllBooksWhenUserChooses1() throws IOException {
-        Menu menu = new Menu(bufferedReader, biblioteca, printStream);
         when(bufferedReader.readLine()).thenReturn("1");
 
         menu.display();
@@ -39,7 +40,6 @@ public class MenuTest {
 
     @Test
     public void shouldDisplayErrorMessageWhenUserChoosesInvalidOption() throws  IOException {
-        Menu menu = new Menu(bufferedReader, biblioteca, printStream);
         when(bufferedReader.readLine()).thenReturn("9");
 
         menu.display();
@@ -49,7 +49,6 @@ public class MenuTest {
 
     @Test
     public void shouldEnableBookCheckoutWhenUserChooses3() throws IOException {
-        Menu menu = new Menu(bufferedReader, biblioteca, printStream);
         when(bufferedReader.readLine()).thenReturn("3");
 
         menu.display();
@@ -59,7 +58,6 @@ public class MenuTest {
 
     @Test
     public void shouldEnableBookReturnWhenUserChooses4() throws IOException {
-        Menu menu = new Menu(bufferedReader, biblioteca, printStream);
         when(bufferedReader.readLine()).thenReturn("4");
 
         menu.display();
@@ -69,7 +67,6 @@ public class MenuTest {
 
     @Test
     public void shouldDisplayAllMoviesWhenUserChooses5() throws IOException {
-        Menu menu = new Menu(bufferedReader, biblioteca, printStream);
         when(bufferedReader.readLine()).thenReturn("5");
 
         menu.display();
@@ -79,7 +76,6 @@ public class MenuTest {
 
     @Test
     public void shouldEnableBookCheckoutWhenUserChooses6() throws IOException {
-        Menu menu = new Menu(bufferedReader, biblioteca, printStream);
         when(bufferedReader.readLine()).thenReturn("6");
 
         menu.display();
