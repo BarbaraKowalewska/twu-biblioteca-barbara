@@ -4,9 +4,7 @@ package com.twu.biblioteca;
 
 import java.io.BufferedReader;
 import java.io.PrintStream;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Biblioteca {
@@ -15,19 +13,20 @@ public class Biblioteca {
     private BufferedReader bufferedReader;
     private Map<Book, Boolean> allBooks;
     private Map<Movie,Boolean> allMovies;
+    private Display display;
 
 
-    public Biblioteca(Map<Book,Boolean> books, PrintStream printStream, BufferedReader bufferedReader, Map<Movie,Boolean> movies) {
+    public Biblioteca(Map<Book,Boolean> books, PrintStream printStream, BufferedReader bufferedReader, Map<Movie,Boolean> movies, Display display) {
         this.printStream = printStream;
         this.allBooks = books;
         this.bufferedReader = bufferedReader;
         this.allMovies = movies;
+        this.display = display;
 
     }
 
     public void displayWelcomeMessage() {
-        String message = "Welcome to Biblioteca. Your one-stop-shop for great titles in Bangalore!";
-        printStream.println(message);
+        display.welcomeMessage();
 
     }
 
@@ -39,19 +38,30 @@ public class Biblioteca {
         return allMovies;
     }
 
-
-    public void displayAllBooks() {
-
-        String booksTitles = "";
+    public List<Book> getAvailableBooks() {
+        List<Book> availableBooks = new ArrayList();
         Iterator<Map.Entry<Book, Boolean>> allBooksIterator = allBooks.entrySet().iterator();
         while (allBooksIterator.hasNext()) {
             Map.Entry<Book, Boolean> entry = allBooksIterator.next();
-            if (entry.getValue().equals(true)){
-                booksTitles += entry.getKey().getTitle() + " - " + entry.getKey().getAuthor()+ ", " + entry.getKey().getPublicationDate() +"\n";
+            if (entry.getValue().equals(true)) {
+                availableBooks.add(entry.getKey());
             }
-                    }
-        printStream.println(booksTitles);
+        }
+        return availableBooks;
     }
+
+
+    public void displayAllBooks() {
+        // MODEL
+        // decide which books are available
+        List<Book> availableBooks = this.getAvailableBooks(); // model....
+
+        // VIEW/DISPLAY
+        // turn them into nice descriptions
+        // put those on the screen
+        display.showBooks(availableBooks);
+    }
+
 
     public void displayAllMovies() {
         String moviesTitles = "";

@@ -19,6 +19,7 @@ public class BibliotecaTests {
     private BufferedReader bufferedReader;
     private Map<Book, Boolean> books;
     private Map<Movie,Boolean> movies;
+    private Display display;
 
     @Before
     public void setUp() throws Exception {
@@ -26,7 +27,8 @@ public class BibliotecaTests {
         bufferedReader = mock(BufferedReader.class);
         books = new LinkedHashMap<Book, Boolean>();
         movies = new LinkedHashMap<Movie,Boolean>();
-        biblioteca = new Biblioteca(books,printStream,bufferedReader,movies);
+        display = new Display(printStream);
+        biblioteca = new Biblioteca(books,printStream,bufferedReader,movies,display);
     }
 
     @Test

@@ -8,13 +8,16 @@ import java.util.Map;
 public class BibliotecaApp {
 
     public static void main(String[] args) {
-
-        Biblioteca biblioteca = new Biblioteca(books(),System.out, new BufferedReader(new InputStreamReader(System.in)),movies());
+        Display display = new Display(System.out);
+        Biblioteca biblioteca = new Biblioteca(books(),System.out, new BufferedReader(new InputStreamReader(System.in)),movies(), display);
         Menu menu = new Menu(new BufferedReader(new InputStreamReader(System.in)),biblioteca,System.out);
         biblioteca.displayWelcomeMessage();
         while(true) {
             menu.display();
         }
+
+//        model = new Model(controller?);
+//        controller = new Controller(display, model);
     }
 
 
