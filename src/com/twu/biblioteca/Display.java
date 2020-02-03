@@ -18,13 +18,20 @@ public class Display {
     }
 
     public void showBooks(List<Book> availableBooks) {
-        List<String> descriptions = new ArrayList();
         String booksTitles = "";
         for (Book book : availableBooks) {
             booksTitles += book.getTitle() + " - " + book.getAuthor()+ ", " + book.getPublicationDate() +"\n";
         }
-
          printStream.println(booksTitles);
+        }
+
+        public void showMovies(List<Movie> availableMovies){
+            String moviesTitles = "";
+            for(Movie movie : availableMovies){
+                moviesTitles += movie.getTitle() + " - " + movie.getDirector()+ ", " + movie.getYear() + " rating: " + movie.getRating() +"\n";
+
+            }
+            printStream.println(moviesTitles);
         }
 
     }

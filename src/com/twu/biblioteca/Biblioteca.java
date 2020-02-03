@@ -50,6 +50,17 @@ public class Biblioteca {
         return availableBooks;
     }
 
+    public List<Movie> getAvailableMovies() {
+        List<Movie> availableMovies = new ArrayList<>();
+        Iterator<Map.Entry<Movie, Boolean>> allMoviesIterator = allMovies.entrySet().iterator();
+        while (allMoviesIterator.hasNext()) {
+            Map.Entry<Movie, Boolean> entry = allMoviesIterator.next();
+            if (entry.getValue().equals(true)) {
+                availableMovies.add(entry.getKey());
+            }
+        }
+        return availableMovies;
+    }
 
     public void displayAllBooks() {
         // MODEL
@@ -64,23 +75,17 @@ public class Biblioteca {
 
 
     public void displayAllMovies() {
-        String moviesTitles = "";
-        Iterator<Map.Entry<Movie, Boolean>> allMoviesIterator = allMovies.entrySet().iterator();
-        while (allMoviesIterator.hasNext()) {
-            Map.Entry<Movie,Boolean> entry = allMoviesIterator.next();
-            if (entry.getValue().equals(true)){
-                moviesTitles += entry.getKey().getTitle() + " - " + entry.getKey().getDirector()+ ", " + entry.getKey().getYear() + " rating: " + entry.getKey().getRating() +"\n";
-            }
-        }
 
-        printStream.println(moviesTitles);
+        List<Movie> availableMovies = this.getAvailableMovies();
+
+        display.showMovies(availableMovies);
+
     }
-
 
 
     public void checkoutBook() {
 
-        System.out.println("Which book do you want to checkout?");
+        printStream.println("Which book do you want to checkout?");
         Scanner in = new Scanner(System.in);
         String bookToCheckout = in.nextLine();
 
