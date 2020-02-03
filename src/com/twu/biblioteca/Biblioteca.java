@@ -14,14 +14,16 @@ public class Biblioteca {
     private Map<Book, Boolean> allBooks;
     private Map<Movie,Boolean> allMovies;
     private Display display;
+    private List<User> allUsers;
 
 
-    public Biblioteca(Map<Book,Boolean> books, PrintStream printStream, BufferedReader bufferedReader, Map<Movie,Boolean> movies, Display display) {
+    public Biblioteca(Map<Book,Boolean> books, PrintStream printStream, BufferedReader bufferedReader, Map<Movie,Boolean> movies, Display display,List<User> allUsers) {
         this.printStream = printStream;
         this.allBooks = books;
         this.bufferedReader = bufferedReader;
         this.allMovies = movies;
         this.display = display;
+        this.allUsers = allUsers;
 
     }
 
@@ -62,20 +64,24 @@ public class Biblioteca {
         return availableMovies;
     }
 
-    public void displayAllBooks() {
-        // MODEL
-        // decide which books are available
-        List<Book> availableBooks = this.getAvailableBooks(); // model....
+    public Map<String,String> getUsersCredentials(){
+        Map<String,String> usersCredentials = new LinkedHashMap<String , String>();
+        for (User user: allUsers){
+            usersCredentials.put(user.getLibraryCardNumber(),user.getPassword());
+        }
+        return usersCredentials;
+    }
 
-        // VIEW/DISPLAY
-        // turn them into nice descriptions
-        // put those on the screen
+
+
+    public void displayAllBooks() {
+        List<Book> availableBooks = this.getAvailableBooks();
+
         display.showBooks(availableBooks);
     }
 
 
     public void displayAllMovies() {
-
         List<Movie> availableMovies = this.getAvailableMovies();
 
         display.showMovies(availableMovies);
@@ -84,7 +90,6 @@ public class Biblioteca {
 
 
     public void checkoutBook() {
-
         printStream.println("Which book do you want to checkout?");
         Scanner in = new Scanner(System.in);
         String bookToCheckout = in.nextLine();
@@ -144,7 +149,36 @@ public class Biblioteca {
         if (movieNotAvailable.equals(true)){
             printStream.println("Sorry this movie is not available");
         }
+    }
+
+    public String askForCardNumber(){
+        System.out.println("What is your Biblioteca Card Number?");
+        Scanner cardNumber = new Scanner(System.in);
+        return cardNumber.nextLine();
+
+    }
+
+    public String askForPassword(){
+        System.out.println("What is your password?");
+        Scanner password = new Scanner(System.in);
+        return password.nextLine();
+    }
 
 
-    }}
+    public boolean loginAuthentication(String cardNumber, String password) {
+
+        return getUsersCredentials().get(cardNumber).equals(password);
+    }
+
+    public void login(){
+        String cardNumber = askForCardNumber();
+        String password = askForPassword();
+        if (loginAuthentication(cardNumber,password)){
+            System.out.println("You are logged in!");
+        } else {
+            System.out.println("Sorry, we don't have such user!");
+        }
+
+    }
+}
 

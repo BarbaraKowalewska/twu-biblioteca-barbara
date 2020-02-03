@@ -20,6 +20,7 @@ public class BibliotecaTests {
     private Map<Book, Boolean> books;
     private Map<Movie,Boolean> movies;
     private Display display;
+    private List<User> users;
 
     @Before
     public void setUp() throws Exception {
@@ -27,8 +28,9 @@ public class BibliotecaTests {
         bufferedReader = mock(BufferedReader.class);
         books = new LinkedHashMap<Book, Boolean>();
         movies = new LinkedHashMap<Movie,Boolean>();
+        users = new LinkedList<>();
         display = new Display(printStream);
-        biblioteca = new Biblioteca(books,printStream,bufferedReader,movies,display);
+        biblioteca = new Biblioteca(books,printStream,bufferedReader,movies,display,users);
     }
 
     @Test
@@ -129,6 +131,18 @@ public class BibliotecaTests {
         biblioteca.checkoutMovie();
 
         assertEquals(false, movies.get(newmovie));
+
+    }
+
+    @Test
+    public void shouldCheckIfUserCredentialsAreCorrect() {
+        User newUser = new User ("11-1234","kot","Kate", "kate@gmail.com",765234987);
+        users.add(newUser);
+
+        String cardNumber = "11-1234";
+        String password = "kot";
+
+        assertEquals(true,biblioteca.loginAuthentication(cardNumber,password));
 
     }
 

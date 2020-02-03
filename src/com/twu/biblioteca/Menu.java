@@ -10,7 +10,6 @@ public class Menu {
     private final Biblioteca biblioteca;
     private PrintStream printStream;
 
-
     public Menu(BufferedReader reader, Biblioteca biblioteca, PrintStream printStream ){
 
         this.reader = reader;
@@ -31,7 +30,7 @@ public class Menu {
     public void display() {
         try {
             this.printStream.println("Press number for the option you want");
-            this.printStream.println ( "1) List of books\n2) Quit\n3) Checkout the book\n4) Return the book\n5) Display Movies\n6) Checkout Movie" );
+            this.printStream.println ( "1) List of books\n2) Quit\n3) Checkout the book\n4) Return the book\n5) Display Movies\n6) Checkout Movie\n7) Log in" );
             String userChoice = readLine();
             int choice = Integer.parseInt(userChoice);
             switch (choice) {
@@ -53,6 +52,9 @@ public class Menu {
                     break;
                 case 6:
                     this.biblioteca.checkoutMovie();
+                    break;
+                case 7:
+                    this.biblioteca.login();
                     break;
                 default:
                     String errorMessage = "Please select a valid option!";
