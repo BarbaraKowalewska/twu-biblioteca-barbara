@@ -1,14 +1,13 @@
 package com.twu.biblioteca;
 
 
-public class Book {
+public class Book extends Item {
 
-    private String title;
     private String author;
     private String publicationDate;
 
     public Book(String title, String author, String publicationDate){
-        this.title = title;
+        super(title);
         this.author = author;
         this.publicationDate = publicationDate;
 

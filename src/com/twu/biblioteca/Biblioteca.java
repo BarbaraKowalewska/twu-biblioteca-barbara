@@ -9,13 +9,13 @@ import java.util.*;
 
 public class Biblioteca {
 
+    static User currentUser;
     private PrintStream printStream;
     private BufferedReader bufferedReader;
     private Map<Book, Boolean> allBooks;
     private Map<Movie,Boolean> allMovies;
     private Display display;
     private List<User> allUsers;
-
 
     public Biblioteca(Map<Book,Boolean> books, PrintStream printStream, BufferedReader bufferedReader, Map<Movie,Boolean> movies, Display display,List<User> allUsers) {
         this.printStream = printStream;
@@ -35,11 +35,6 @@ public class Biblioteca {
     public Map <Book, Boolean> getAllBooks() {
         return allBooks;
     }
-
-    public Map<Movie,Boolean> getAllMovies() {
-        return allMovies;
-    }
-
     public List<Book> getAvailableBooks() {
         List<Book> availableBooks = new ArrayList();
         Iterator<Map.Entry<Book, Boolean>> allBooksIterator = allBooks.entrySet().iterator();
@@ -70,6 +65,16 @@ public class Biblioteca {
             usersCredentials.put(user.getLibraryCardNumber(),user.getPassword());
         }
         return usersCredentials;
+    }
+
+    public User getUserByCardNumber(String cardNumber){
+        List<User> temp = new LinkedList<>();
+        for (User user: allUsers){
+            if(user.getLibraryCardNumber().equals(cardNumber)){
+               temp.add(user);
+            }
+        }
+        return temp.get(0);
     }
 
 
@@ -175,10 +180,15 @@ public class Biblioteca {
         String password = askForPassword();
         if (loginAuthentication(cardNumber,password)){
             System.out.println("You are logged in!");
+            currentUser = getUserByCardNumber(cardNumber);
         } else {
             System.out.println("Sorry, we don't have such user!");
         }
 
+    }
+
+    public void userInformation() {
+        System.out.println("name: "+ currentUser.getName()+"\nemail: " + currentUser.getEmail()+"\nphone number:"+ currentUser.getPhoneNumber());
     }
 }
 

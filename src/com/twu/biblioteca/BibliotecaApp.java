@@ -11,12 +11,13 @@ public class BibliotecaApp {
         Biblioteca biblioteca = new Biblioteca(books(),System.out, new BufferedReader(new InputStreamReader(System.in)),movies(), display,users());
         Menu menu = new Menu(new BufferedReader(new InputStreamReader(System.in)),biblioteca,System.out);
         biblioteca.displayWelcomeMessage();
+        while(Biblioteca.currentUser == null){
+            menu.displayShorterMenu();
+        }
         while(true) {
             menu.display();
         }
 
-//        model = new Model(controller?);
-//        controller = new Controller(display, model);
     }
 
 

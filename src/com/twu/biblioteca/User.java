@@ -4,12 +4,12 @@ import java.util.*;
 
 public class User {
 
+
     private String libraryCardNumber;
     private String password;
     private String name;
     private String email;
     private int phoneNumber;
-    private ArrayList<Book> checkedBooks;
 
     public User(String libraryCardNumber, String password, String name, String email, int phoneNumber){
         this.libraryCardNumber = libraryCardNumber;
@@ -25,5 +25,17 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
     }
 }

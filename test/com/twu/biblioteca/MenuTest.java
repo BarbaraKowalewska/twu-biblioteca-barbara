@@ -48,8 +48,8 @@ public class MenuTest {
     }
 
     @Test
-    public void shouldEnableBookCheckoutWhenUserChooses3() throws IOException {
-        when(bufferedReader.readLine()).thenReturn("3");
+    public void shouldEnableBookCheckoutWhenUserChooses5() throws IOException {
+        when(bufferedReader.readLine()).thenReturn("5");
 
         menu.display();
 
@@ -57,8 +57,8 @@ public class MenuTest {
     }
 
     @Test
-    public void shouldEnableBookReturnWhenUserChooses4() throws IOException {
-        when(bufferedReader.readLine()).thenReturn("4");
+    public void shouldEnableBookReturnWhenUserChooses7() throws IOException {
+        when(bufferedReader.readLine()).thenReturn("7");
 
         menu.display();
 
@@ -66,8 +66,8 @@ public class MenuTest {
     }
 
     @Test
-    public void shouldDisplayAllMoviesWhenUserChooses5() throws IOException {
-        when(bufferedReader.readLine()).thenReturn("5");
+    public void shouldDisplayAllMoviesWhenUserChooses2() throws IOException {
+        when(bufferedReader.readLine()).thenReturn("2");
 
         menu.display();
 

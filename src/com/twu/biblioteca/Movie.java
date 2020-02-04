@@ -1,14 +1,13 @@
 package com.twu.biblioteca;
 
-public class Movie {
+public class Movie extends Item {
 
-    private String title;
     private String director;
     private String year;
     private int rating;
 
     public Movie(String title, String director, String year, int rating){
-        this.title = title;
+        super(title);
         this.director = director;
         this.year = year;
         this.rating = rating;
