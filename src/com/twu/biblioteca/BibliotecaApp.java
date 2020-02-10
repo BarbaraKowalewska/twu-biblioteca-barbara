@@ -9,17 +9,20 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         Display display = new Display(System.out);
         Biblioteca biblioteca = new Biblioteca(books(),System.out, new BufferedReader(new InputStreamReader(System.in)),movies(), display,users());
-        Menu menu = new Menu(new BufferedReader(new InputStreamReader(System.in)),biblioteca,System.out);
+        CheckOutBookController checkOutBookController = new CheckOutBookController(biblioteca, display);
+        Menu menu = new Menu(new BufferedReader(new InputStreamReader(System.in)),biblioteca,System.out, checkOutBookController);
         biblioteca.displayWelcomeMessage();
         while(Biblioteca.currentUser == null){
             menu.displayShorterMenu();
         }
-        while(true) {
-            menu.display();
+        while(true){
+            if(Biblioteca.currentUser.getName().equals("Librarian")){
+                menu.displayLibrarianMenu();
+            }else{
+                menu.display();
+            }
         }
-
     }
-
 
     private static Map<Book, Boolean> books() {
         Map <Book, Boolean> books = new LinkedHashMap<Book, Boolean>();
@@ -42,7 +45,9 @@ public class BibliotecaApp {
         users.add(new User("11-1234","kot","Kate", "kate@gmail.com",765234987));
         users.add(new User("22-2345","pies","Tom", "tom@gmail.com",765876871));
         users.add(new User("33-3456","ryba","Jose", "jose@gmail.com",635412987));
+        users.add(new User("11-111","secret","Librarian", "lib@gmail.com",635412987));
         return users;
     }
+
 
 }

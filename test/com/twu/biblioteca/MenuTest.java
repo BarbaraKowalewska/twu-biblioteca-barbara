@@ -1,6 +1,8 @@
 package com.twu.biblioteca;
 
+import com.sun.tools.javac.comp.Check;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -18,6 +20,7 @@ public class MenuTest {
     private Map<Book, Boolean> books;
     private Biblioteca biblioteca;
     private Menu menu;
+    private CheckOutBookController checkOutBookController;
 
 
     @Before
@@ -26,7 +29,9 @@ public class MenuTest {
         bufferedReader = mock(BufferedReader.class);
         books = new LinkedHashMap<Book, Boolean>();
         biblioteca = mock(Biblioteca.class);
-        menu = new Menu(bufferedReader, biblioteca, printStream);
+        checkOutBookController = mock(CheckOutBookController.class);
+
+        menu = new Menu(bufferedReader, biblioteca, printStream, checkOutBookController);
     }
 
     @Test
@@ -53,7 +58,7 @@ public class MenuTest {
 
         menu.display();
 
-        verify(biblioteca, times(1)).checkoutBook();
+        verify(checkOutBookController, times(1)).start();
     }
 
     @Test

@@ -9,12 +9,16 @@ public class Menu {
     private final BufferedReader reader;
     private final Biblioteca biblioteca;
     private PrintStream printStream;
+    private CheckOutBookController checkOutBookController;
 
-    public Menu(BufferedReader reader, Biblioteca biblioteca, PrintStream printStream ){
+
+    public Menu(BufferedReader reader, Biblioteca biblioteca, PrintStream printStream, CheckOutBookController checkOutBookController){
 
         this.reader = reader;
         this.printStream = printStream;
         this.biblioteca = biblioteca;
+        this.checkOutBookController = checkOutBookController;
+
     }
 
     private String readLine() {
@@ -48,13 +52,13 @@ public class Menu {
                     System.exit(0);
                     break;
                 case 5:
-                    this.biblioteca.checkoutBook();
+                    this.checkOutBookController.start();
                     break;
                 case 6:
-                    this.biblioteca.checkoutMovie();
+                    this.biblioteca.assignRentedItemToUser(this.biblioteca.checkoutMovie());
                     break;
                 case 7:
-                    this.biblioteca.returnBook();
+                    this.biblioteca.deleteReturnedItemFromUser(this.biblioteca.returnBook());
                     break;
                 case 8:
                     this.biblioteca.userInformation();
@@ -100,6 +104,40 @@ public class Menu {
             }
 
         }
+
+    public void displayLibrarianMenu(){
+        try {
+            this.printStream.println("Press number for the option you want");
+            this.printStream.println ( "1) List of books\n2) Display Movies\n3) Log in\n4) Quit\n5) Display Rented Items" );
+            String userChoice = readLine();
+            int choice = Integer.parseInt(userChoice);
+            switch (choice) {
+                case 1:
+                    this.biblioteca.displayAllBooks();;
+                    break;
+                case 2:
+                    this.biblioteca.displayAllMovies();
+                    break;
+                case 3:
+                    this.biblioteca.login();
+                    break;
+                case 4:
+                    this.printStream.println("Byeee");
+                    System.exit(0);
+                    break;
+                case 5:
+                    this.biblioteca.displayRentedItems();
+                    break;
+                default:
+                    String errorMessage = "Please select a valid option!";
+                    this.printStream.println(errorMessage);
+                    break;
+
+            } }catch (Exception e) {
+            this.printStream.println("Please select a valid option");
+        }
+
+    }
 
         }
 

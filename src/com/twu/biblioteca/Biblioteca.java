@@ -16,6 +16,7 @@ public class Biblioteca {
     private Map<Movie,Boolean> allMovies;
     private Display display;
     private List<User> allUsers;
+    private Map<User, ArrayList<Item>> rentedItems;
 
     public Biblioteca(Map<Book,Boolean> books, PrintStream printStream, BufferedReader bufferedReader, Map<Movie,Boolean> movies, Display display,List<User> allUsers) {
         this.printStream = printStream;
@@ -24,7 +25,12 @@ public class Biblioteca {
         this.allMovies = movies;
         this.display = display;
         this.allUsers = allUsers;
+        this.rentedItems = createRegister();
 
+    }
+
+    public Map<User, ArrayList<Item>> getRentedItems() {
+        return rentedItems;
     }
 
     public void displayWelcomeMessage() {
@@ -35,6 +41,23 @@ public class Biblioteca {
     public Map <Book, Boolean> getAllBooks() {
         return allBooks;
     }
+
+    public List<User> getAllUsers() {
+        return allUsers;
+    }
+
+        public Map<User, ArrayList<Item>> createRegister() {
+        Map<User, ArrayList<Item>> rentedItems = new LinkedHashMap<>();
+
+        for (User user : allUsers) {
+            rentedItems.put(user, new ArrayList<>());
+        }
+        return rentedItems;
+    }
+
+
+
+
     public List<Book> getAvailableBooks() {
         List<Book> availableBooks = new ArrayList();
         Iterator<Map.Entry<Book, Boolean>> allBooksIterator = allBooks.entrySet().iterator();
@@ -68,15 +91,13 @@ public class Biblioteca {
     }
 
     public User getUserByCardNumber(String cardNumber){
-        List<User> temp = new LinkedList<>();
-        for (User user: allUsers){
-            if(user.getLibraryCardNumber().equals(cardNumber)){
-               temp.add(user);
+        for (User user: allUsers) {
+            if (user.getLibraryCardNumber().equals(cardNumber)) {
+                return user;
             }
         }
-        return temp.get(0);
+        throw new UserNotFoundException();
     }
-
 
 
     public void displayAllBooks() {
@@ -88,36 +109,33 @@ public class Biblioteca {
 
     public void displayAllMovies() {
         List<Movie> availableMovies = this.getAvailableMovies();
-
         display.showMovies(availableMovies);
-
     }
 
-
-    public void checkoutBook() {
-        printStream.println("Which book do you want to checkout?");
-        Scanner in = new Scanner(System.in);
-        String bookToCheckout = in.nextLine();
+    public Book tryCheckOutBookByTitle(String title) {
+        Book rentedItem = null;
 
         Iterator<Map.Entry<Book, Boolean>> allBooksIterator = getAllBooks().entrySet().iterator();
-        Boolean bookNotAvailable = true;
         while (allBooksIterator.hasNext()) {
             Map.Entry<Book, Boolean> entry = allBooksIterator.next();
-            if (entry.getKey().getTitle().equals(bookToCheckout) && entry.getValue().equals(true)) {
-                System.out.println("Thank you! Enjoy the book");
+            if (entry.getKey().getTitle().equals(title) && entry.getValue().equals(true)) {
                 allBooks.put(entry.getKey(),false);
-                bookNotAvailable = false;
+                rentedItem = entry.getKey();
             }
         }
-        if (bookNotAvailable.equals(true)){
-            printStream.println("Sorry this book is not available");
+
+        // TODO: take this into account when testing
+        if (rentedItem != null) {
+            this.assignRentedItemToUser(rentedItem);
         }
+        return rentedItem;
     }
 
-    public void returnBook() {
+    public Book returnBook() {
         System.out.println("Which book do you want to return?");
         Scanner in = new Scanner(System.in);
         String bookToReturn = in.nextLine();
+        Book returnedItem = null;
 
         Boolean bookCannotBeReturned = true;
         Iterator<Map.Entry<Book, Boolean>> allBooksIterator = getAllBooks().entrySet().iterator();
@@ -127,18 +145,21 @@ public class Biblioteca {
                 System.out.println("Thank you for returning the book!");
                 allBooks.put(entry.getKey(),true);
                 bookCannotBeReturned = false;
+                returnedItem = entry.getKey();
+
             }
         }
         if (bookCannotBeReturned.equals(true)){
             printStream.println("This is not a valid book to return");
         }
-
+        return returnedItem;
     }
 
-    public void checkoutMovie() {
+    public Movie checkoutMovie() {
         System.out.println("Which movie do you want to checkout?");
         Scanner in = new Scanner(System.in);
         String movieToCheckout = in.nextLine();
+        Movie rentedItem = null;
 
         Iterator<Map.Entry<Movie, Boolean>> allMoviesIterator = allMovies.entrySet().iterator();
         Boolean movieNotAvailable = true;
@@ -148,19 +169,27 @@ public class Biblioteca {
                 System.out.println("Thank you! Enjoy the movie");
                 allMovies.put(entry.getKey(),false);
                 movieNotAvailable = false;
-
+                rentedItem = entry.getKey();
             }
         }
         if (movieNotAvailable.equals(true)){
             printStream.println("Sorry this movie is not available");
         }
+        return rentedItem;
+    }
+
+    public void assignRentedItemToUser(Item rentedItem){
+        rentedItems.get(currentUser).add(rentedItem);
+    }
+
+    public void deleteReturnedItemFromUser(Item returnedItem){
+        rentedItems.get(currentUser).remove(returnedItem);
     }
 
     public String askForCardNumber(){
         System.out.println("What is your Biblioteca Card Number?");
         Scanner cardNumber = new Scanner(System.in);
         return cardNumber.nextLine();
-
     }
 
     public String askForPassword(){
@@ -171,7 +200,6 @@ public class Biblioteca {
 
 
     public boolean loginAuthentication(String cardNumber, String password) {
-
         return getUsersCredentials().get(cardNumber).equals(password);
     }
 
@@ -189,6 +217,9 @@ public class Biblioteca {
 
     public void userInformation() {
         System.out.println("name: "+ currentUser.getName()+"\nemail: " + currentUser.getEmail()+"\nphone number:"+ currentUser.getPhoneNumber());
+    }
+    public void displayRentedItems(){
+        display.showRentedItems(rentedItems);
     }
 }
 

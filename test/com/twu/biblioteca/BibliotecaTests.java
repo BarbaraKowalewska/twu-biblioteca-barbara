@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.*;
 
 
@@ -21,6 +22,8 @@ public class BibliotecaTests {
     private Map<Movie,Boolean> movies;
     private Display display;
     private List<User> users;
+    private User newUser;
+
 
     @Before
     public void setUp() throws Exception {
@@ -29,6 +32,11 @@ public class BibliotecaTests {
         books = new LinkedHashMap<Book, Boolean>();
         movies = new LinkedHashMap<Movie,Boolean>();
         users = new LinkedList<>();
+        newUser = new User ("11-1234","kot","Kate", "kate@gmail.com",765234987);
+        users.add(newUser);
+        User anotherUser = new User("22-2345","pies","Tom", "tom@gmail.com",765876871);
+        users.add(anotherUser);
+
         display = new Display(printStream);
         biblioteca = new Biblioteca(books,printStream,bufferedReader,movies,display,users);
     }
@@ -54,12 +62,14 @@ public class BibliotecaTests {
     public void shouldCheckoutBook()  throws IOException{
         Book newBook = new Book("Harry Potter", "Jim", "1999");
         books.put(newBook, true);
-
         String input = "Harry Potter";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-        biblioteca.checkoutBook();
+        Biblioteca.currentUser = newUser;
 
+        System.out.println(biblioteca.getRentedItems());
+
+        Book result = biblioteca.tryCheckOutBookByTitle(input);
+
+        assertEquals(newBook, result);
         assertEquals(false, books.get(newBook));
 
     }
@@ -68,13 +78,11 @@ public class BibliotecaTests {
     public void shouldShowErrorMessageWhenBookCannotBeCheckout() {
         Book newBook = new Book("Harry Potter", "Jim", "1999");
         books.put(newBook, true);
-
         String input = "Clean Code";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-        biblioteca.checkoutBook();
 
-        verify(printStream).println("Sorry this book is not available");
+        Book result = biblioteca.tryCheckOutBookByTitle(input);
+
+        assertNull(result);
     }
 
     @Test
@@ -121,23 +129,21 @@ public class BibliotecaTests {
 
     @Test
     public void shouldCheckoutMovie()  throws IOException{
-        Movie newmovie = new Movie("Sabrina","John","1990", 8);
+        Movie newMovie = new Movie("Sabrina","John","1990", 8);
 
-        movies.put(newmovie, true);
+        movies.put(newMovie, true);
 
         String input = "Sabrina";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         biblioteca.checkoutMovie();
 
-        assertEquals(false, movies.get(newmovie));
+        assertEquals(false, movies.get(newMovie));
 
     }
 
     @Test
     public void shouldCheckIfUserCredentialsAreCorrect() {
-        User newUser = new User ("11-1234","kot","Kate", "kate@gmail.com",765234987);
-        users.add(newUser);
 
         String cardNumber = "11-1234";
         String password = "kot";
@@ -145,6 +151,28 @@ public class BibliotecaTests {
         assertEquals(true,biblioteca.loginAuthentication(cardNumber,password));
 
     }
+
+    @Test
+    public void ShouldDeleteBookFromRentedItemsWhenUserReturnTheBook(){
+        Book newBook = new Book("Harry Potter", "Jim", "1999");
+        biblioteca.getRentedItems().get(newUser).add(newBook);
+        Biblioteca.currentUser = newUser;
+        Item returnedItem = newBook;
+        biblioteca.deleteReturnedItemFromUser(newBook);
+
+        assertEquals(false,biblioteca.getRentedItems().get(newUser).contains(newBook));
+    }
+
+    @Test
+    public void ShouldAddBookToRentedItemsWhenUserCheckoutTheBook(){
+        Book newBook = new Book("Harry Potter", "Jim", "1999");
+        Biblioteca.currentUser = newUser;
+        Item returnedItem = newBook;
+        biblioteca.assignRentedItemToUser(newBook);
+
+        assertEquals(true,biblioteca.getRentedItems().get(newUser).contains(newBook));
+    }
+
 
 
 }
