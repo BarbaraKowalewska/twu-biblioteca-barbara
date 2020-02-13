@@ -58,12 +58,9 @@ public class Display {
                     rentedItemsTitles += item.title + ", ";
                 }
 
-
                 test += name + " rented: " + rentedItemsTitles +"\n";
-//                rentedItemsTitles = rentedItemsTitles.substring(0,rentedItemsTitles.length()-2);
                 System.out.println(name + " rented: " + rentedItemsTitles);
 
             }
-
             return test;
         }}
